@@ -1,0 +1,31 @@
+:root {
+    scrollbar-width: auto;
+    -ms-overflow-style: none;
+}
+
+:root::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+    background-color: transparent;
+}
+
+:root ::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+}
+
+:root::-webkit-scrollbar-thumb {
+    @apply bg-blue-800;
+    border-radius: 4px;
+}
+
+.chat {
+    @apply pl-4 pr-4;
+    max-height: calc(100vh - 78px - 60px);
+    overflow-y: auto;
+}
+
+.message {
+    @apply p-4;
+    min-width: 140px;
+    max-width: 60vw;
+}
