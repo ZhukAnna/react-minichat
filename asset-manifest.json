@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-minichat/static/css/main.e12ce7d4.css",
+    "main.js": "/react-minichat/static/js/main.9ae1a2c8.js",
+    "static/js/787.35cea4b2.chunk.js": "/react-minichat/static/js/787.35cea4b2.chunk.js",
+    "index.html": "/react-minichat/index.html",
+    "main.e12ce7d4.css.map": "/react-minichat/static/css/main.e12ce7d4.css.map",
+    "main.9ae1a2c8.js.map": "/react-minichat/static/js/main.9ae1a2c8.js.map",
+    "787.35cea4b2.chunk.js.map": "/react-minichat/static/js/787.35cea4b2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e12ce7d4.css",
+    "static/js/main.9ae1a2c8.js"
+  ]
+}
