@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
-    <div className='container mx-auto flex content-center'>
+    <div className='container mx-auto h-screen flex justify-center items-center'>
       <Outlet />
     </div>
   );
