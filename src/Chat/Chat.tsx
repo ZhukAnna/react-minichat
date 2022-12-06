@@ -1,27 +1,36 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 
+interface Message {
+  sender: string;
+  message: string;
+  date: string;
+}
+
 function Chat() {
   const userName = sessionStorage.getItem('username');
   const [styles, setStyle] = useState('font-bold absolute top-1/2');
   const [message, setMessage] = useState('');
-  // const [history, setHistory] = useState(() => {
-  //   const saved = localStorage.getItem('history');
-  //   return saved ? JSON.parse(saved) : '';
-  // });
-  const history = [
-    {
-      sender: 'John',
-      message: 'Hello',
-      date: '2022-12-06T12:39:12.255Z',
-    },
-    {
-      sender: userName,
-      message: 'Hello, friend!',
-      date: '2022-12-06T12:40:56.255Z',
-    },
-  ];
-
+  const [history, setHistory] = useState(() => {
+    const saved = localStorage.getItem('history');
+    return saved
+      ? JSON.parse(saved)
+      : [
+          {
+            sender: 'John',
+            message: 'Hello',
+            date: '2022-12-06T12:39:12.255Z',
+          },
+          {
+            sender: userName,
+            message: 'Hello, friend!',
+            date: '2022-12-06T12:40:56.255Z',
+          },
+        ];
+  });
   useEffect(() => {
+    window.addEventListener('storage', (event) => {
+      if (event.newValue) setHistory(JSON.parse(event.newValue));
+    });
     const t = setTimeout(() => {
       setStyle('font-bold text-blue-900 absolute top-0');
     }, 2500);
@@ -30,19 +39,26 @@ function Chat() {
 
   const sendMessage = (evt: FormEvent) => {
     evt.preventDefault();
-    localStorage.setItem('message', message);
+    const newMsg = {
+      sender: userName,
+      message,
+      date: new Date(),
+    };
+    setHistory(history.concat(newMsg));
+    localStorage.setItem('history', JSON.stringify(history.concat(newMsg)));
+    setMessage('');
   };
 
   return (
     <div className='flex flex-col justify-end h-90 min-w-80 relative gap-6'>
       <div className={styles}>Привет, {userName}!</div>
-      {history.map((el, i) => {
+      {history.map((el: Message, i: number) => {
         return (
           <div
             key={i}
             className={
               'rounded p-4' +
-              (el.sender == userName
+              (el.sender === userName
                 ? ' bg-blue-400 self-end'
                 : ' bg-blue-200 self-start')
             }>
